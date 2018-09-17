@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Primary user:
+  = @balance.primary_user
+%p
+  %b Sub user:
+  = @balance.sub_user
+%p
+  %b Balance:
+  = @balance.balance
+%p
+  %b Is positive:
+  = @balance.is_positive
+
+= link_to 'Edit', edit_balance_path(@balance)
+\|
+= link_to 'Back', balances_path

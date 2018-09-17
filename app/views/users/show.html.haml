@@ -1,0 +1,30 @@
+.container
+  %p#notice= notice
+
+  %p
+    %b Name:
+    = @user.name
+
+  - @records.each do |r|
+    %p= link_to r.id, balance_path(r.id)
+
+  -# = form_with model: Balance.new do |f|
+  -#   = f.hidden_field :primary_user, :value => @user_id
+  -#   = f.label '送金相手'
+  -#   = f.text_field :sub_user
+  -#   = f.label '送金額'
+  -#   = f.number_field :amount
+  -#   = f.submit 'Send'
+  -#
+  -# %p 'update'
+  -# = form_with model: Balance.find(10) do |f|
+  -#   = f.hidden_field :primary_user, :value => @user_id
+  -#   = f.label '送金相手'
+  -#   = f.text_field :sub_user
+  -#   = f.label '送金額'
+  -#   = f.number_field :amount
+  -#   = f.submit 'Update'
+
+  = link_to 'Edit', edit_user_path(@user)
+  \|
+  = link_to 'Back', users_path

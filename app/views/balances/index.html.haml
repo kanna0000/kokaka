@@ -1,0 +1,27 @@
+%h1 Listing balances
+
+%table
+  %thead
+    %tr
+      %th Primary user
+      %th Sub user
+      %th Balance
+      %th Is positive
+      %th
+      %th
+      %th
+
+  %tbody
+    - @balances.each do |balance|
+      %tr
+        %td= balance.primary_user
+        %td= balance.sub_user
+        %td= balance.balance
+        %td= balance.is_positive
+        %td= link_to 'Show', balance
+        %td= link_to 'Edit', edit_balance_path(balance)
+        %td= link_to 'Destroy', balance, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Balance', new_balance_path
