@@ -13,6 +13,13 @@
   %b Is positive:
   = @balance.is_positive
 
+  %p 'update'
+  = form_with model: Balance.find(@balance.id) do |f|
+    = f.label '送金相手'
+    = f.text_field :send_to
+    = f.label '送金額'
+    = f.number_field :amount
+    = f.submit 'Update'
 = link_to 'Edit', edit_balance_path(@balance)
 \|
 = link_to 'Back', balances_path

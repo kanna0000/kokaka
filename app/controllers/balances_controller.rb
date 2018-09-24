@@ -41,8 +41,12 @@ class BalancesController < ApplicationController
   # PATCH/PUT /balances/1
   # PATCH/PUT /balances/1.json
   def update
-    @balance = Balance.where
-    @balance.update_balance params[:balance][:amount]
+    @balance = Balance.find(params[:id])
+    if params[:balance][:send_to] == @balance.primary_user
+      @balance.update_balance_as_sub params[:balance][:amount]
+    else
+      @balance.update_balance_as_primary params[:balance][:amount]
+    end
     respond_to do |format|
       if @balance.update(balance_params)
         format.html { redirect_to @balance, notice: 'Balance was successfully updated.' }
