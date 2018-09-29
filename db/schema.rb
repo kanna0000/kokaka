@@ -10,16 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_16_102320) do
+ActiveRecord::Schema.define(version: 2018_09_29_061958) do
 
-  create_table "NewTable", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "prime_user", limit: 50, null: false
-    t.string "sub_user", limit: 50, null: false
-    t.integer "balance", null: false
-    t.boolean "is_positive", null: false
-  end
-
-  create_table "balances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "balances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "primary_user"
     t.string "sub_user"
     t.integer "balance"
@@ -28,10 +21,13 @@ ActiveRecord::Schema.define(version: 2018_09_16_102320) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name"
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "username", default: "", null: false
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "salt"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end
