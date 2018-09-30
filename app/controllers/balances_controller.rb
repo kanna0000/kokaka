@@ -25,11 +25,11 @@ class BalancesController < ApplicationController
   # POST /balances.json
   def create
     @balance = Balance.new(balance_params)
-    @balance.calculate_balance params[:balance][:amount]
+    @balance.calculate_balance balance_params[:balance]
 
     respond_to do |format|
       if @balance.save
-        format.html { redirect_to @balance, notice: 'Balance was successfully created.' }
+        format.html { redirect_to user_path(params[:user_id]), notice: 'Balance was successfully created.' }
         format.json { render :show, status: :created, location: @balance }
       else
         format.html { render :new }

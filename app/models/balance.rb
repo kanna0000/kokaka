@@ -1,6 +1,6 @@
 class Balance < ApplicationRecord
   def calculate_balance amount
-    self.balance = -amount
+    self.balance = -amount.to_i
   end
 
   def update_balance_as_primary amount

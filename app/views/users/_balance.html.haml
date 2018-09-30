@@ -1,0 +1,4 @@
+- if user_id == record.primary_user
+  %p= "balance #{record.balance}"
+- else
+  %p= "balance #{-record.balance}"

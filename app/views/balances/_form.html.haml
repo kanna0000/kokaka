@@ -1,4 +1,4 @@
-= form_for @balance do |f|
+= form_for [:user, @balance] do |f|
   - if @balance.errors.any?
     #error_explanation
       %h2= "#{pluralize(@balance.errors.count, "error")} prohibited this balance from being saved:"
@@ -7,16 +7,15 @@
           %li= message
 
   .field
-    = f.label :primary_user
-    = f.text_field :primary_user
-  .field
-    = f.label :sub_user
+    = f.label 'who to send'
     = f.text_field :sub_user
   .field
-    = f.label :balance
+    = f.label :amount
     = f.number_field :balance
   .field
     = f.label :is_positive
     = f.check_box :is_positive
+    .field
+    = f.hidden_field :primary_user, value: params[:user_id]
   .actions
-    = f.submit 'Save'
+    = f.submit 'Send'

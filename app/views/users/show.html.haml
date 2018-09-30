@@ -3,12 +3,16 @@
 
   %p
     %b Name:
-    = @user.name
+    = @user.username
+  %p
+    = link_to 'send to new user', new_user_balance_path(@user)
 
   - @records.each do |r|
     %span balance ID
-    %span= link_to r.id, balance_path(r.id)
-    %p
+    %span= link_to r.id, user_balance_path(@user,r.id)
+    %p= "counterpart #{r.sub_user}"
+    = render 'balance', record: r, user_id: @user.id
+    %p= link_to 'Update', edit_user_balance_path(@user,r.id)
 
   = link_to 'Edit', edit_user_path(@user)
   \|
