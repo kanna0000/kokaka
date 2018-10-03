@@ -13,4 +13,9 @@ class UserSessionController < ApplicationController
       render action: 'new'
     end
   end
+
+  def destroy
+    logout
+    redirect_to new_user_session_path
+  end
 end
