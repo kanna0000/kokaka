@@ -1,6 +1,7 @@
 .container
   %p#notice= notice
 
+  %h1 User Top
   %p
     %b Name:
     = @user.username
@@ -16,4 +17,4 @@
 
   = link_to 'Edit', edit_user_path(@user)
   \|
-  = link_to 'Back', users_path
+  = link_to 'Logout', user_session_path, method: :delete

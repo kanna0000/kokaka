@@ -11,3 +11,5 @@
         = password_field_tag :password, nil, class: 'form-input'
         .columns.mt-2
           = submit_tag "Login", class: ['column', 'column-mx-auto', 'btn', 'mx-2', 'mt-2']
+  .columns
+    = link_to "Create account", new_user_path, class: ['column', 'btn', 'btn-link', 'column-mx-auto']

@@ -1,4 +1,6 @@
-%h1 New user
-= render 'form'
-
-= link_to 'Back', users_path
+.comtainer
+  .columns
+    %h1.col-mx-auto New user
+  = render 'form'
+  .columns
+    = link_to 'Login', new_user_session_path, class: 'col-mx-auto'
