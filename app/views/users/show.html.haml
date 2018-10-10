@@ -1,20 +1,37 @@
 .container
-  %p#notice= notice
+  .columns
+    %p#notice= notice
 
-  %h1 User Top
-  %p
-    %b Name:
-    = @user.username
-  %p
-    = link_to 'send to new user', new_user_balance_path(@user)
+    %h1.col-mx-auto Dash Board
+  .modal#modal-id
+    = link_to "", "#close", class: "modal-overlay", aria: {label: "Close"}
+    .modal-container
+      .modal-header
+        = link_to "", "#close", class: "btn btn-clear float-right", id: "colse", aria: {label: "Close"}
+      .model-body
+        = render 'balance_form'
+  = button_tag 'modal', id: 'modal'
+  .columns
+    %p
+      %b Name:
+      = @user.username
+    %p
+      = link_to 'send to new user', new_user_balance_path(@user)
 
-  - @records.each do |r|
-    %span balance ID
-    %span= link_to r.id, user_balance_path(@user,r.id)
-    %p= "counterpart #{r.sub_user}"
-    = render 'balance', record: r, user_id: @user.id
-    %p= link_to 'Update', edit_user_balance_path(@user,r.id)
+    - @records.each do |r|
+      %span balance ID
+      %span= link_to r.id, user_balance_path(@user,r.id)
+      %p= "counterpart #{r.sub_user}"
+      = render 'balance', record: r, user_id: @user.id
+      %p= link_to 'Update', edit_user_balance_path(@user,r.id)
 
-  = link_to 'Edit', edit_user_path(@user)
-  \|
-  = link_to 'Logout', user_session_path, method: :delete
+    = link_to 'Edit', edit_user_path(@user)
+    \|
+    = link_to 'Logout', user_session_path, method: :delete
+
+:javascript
+  var modal_button = document.getElementById('modal');
+  modal_button.onclick = function(){
+    var modal = document.getElementById('modal-id');
+    modal.classList.add('active');
+  }
